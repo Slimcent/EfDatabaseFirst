@@ -24,8 +24,7 @@ namespace EfDatabaseFirst
                 }
                 catch (Exception ex)
                 {
-
-                    Console.WriteLine(ex.Message);
+                    WriteLine(ex.Message);
                 } 
             }
         }
@@ -51,10 +50,12 @@ namespace EfDatabaseFirst
 
         public static void ShowAllUsers()
         {
+            Clear();
             try
             {
                 using (var context = new EfEntities())
                 {
+                    WriteLine("Getting Users\n");
                     foreach (Ef.User user in context.Users)
                     {
                         WriteLine(user.Id.ToString() + " " + user.Name + " " + user.Email);
@@ -63,10 +64,9 @@ namespace EfDatabaseFirst
             }
             catch (Exception ex)
             {
-
-                Console.WriteLine(ex.Message);
+                WriteLine(ex.Message);
             }
-            
+            Application.WhatElseToPerform();
         }
 
         public static void FindUser(int id)
@@ -78,20 +78,19 @@ namespace EfDatabaseFirst
                     Ef.User userToFind = context.Users.Find(id);
                     if (userToFind != null)
                     {
-                        Console.WriteLine(userToFind.Id.ToString() + " " + userToFind.Name + " " + userToFind.Email);
+                        WriteLine(userToFind.Id.ToString() + " " + userToFind.Name + " " + userToFind.Email);
                     }
                     else
                     {
-                        Console.WriteLine("User not found");
+                        WriteLine("User not found");
                     }
                 }
             }
             catch (Exception ex)
             {
-
-                Console.WriteLine(ex.Message);
+                WriteLine(ex.Message);
             }
-            
+            Application.WhatElseToPerform();
         }
 
         public static void DeleteUser(int id)
@@ -113,15 +112,15 @@ namespace EfDatabaseFirst
                     }
                     else
                     {
-                        Console.WriteLine("User not found");
+                        WriteLine("User not found");
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                WriteLine(ex.Message);
             }
-            
+            Application.WhatElseToPerform();
         }
     }
 }
